@@ -9,24 +9,24 @@ public class MonteCarloTester
 {
    
     
-   public static void main(String args[])
+   public static void main(String[] args)
    {
        MonteCarlo mcObj = new MonteCarlo(5,3,2);
        double cirCount = 0;
        double sqrCount = 0;
-       for(int a = 0; a<100; a++)
+       for(int a = 0; a<100000000; a++)
        {
-           double randX = MonteCarlo.nextRainDrop_x();
-           double randY = MonteCarlo.nextRainDrop_y();
+           double x = mcObj.nextRainDrop_x();
+           double y = mcObj.nextRainDrop_y();
            
-           if(MonteCarlo.insideCircle(randX, randY))
+           if(mcObj.insideCircle(x,y))
            {
                cirCount++;
            }
            sqrCount++;
        }
-       int s = cirCount*Math.pow((2*MonteCarlo.rr),2)
-               / (sqrCount*Math.pow(MonteCarlo.rr,2));
+       double s = (cirCount*Math.pow((2*mcObj.rr),2))/(sqrCount*Math.pow((mcObj.rr),2));
+               
        System.out.println("The estimate of Pi is " + s);
    }
 }

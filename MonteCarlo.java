@@ -11,34 +11,34 @@ import java.util.Random;
 public class MonteCarlo
 {
     public double rr;
-    public double xx;
-    public double yy;
+    public double hh;
+    public double kk;
     
     
     public MonteCarlo(double h, double k, double r)
     {
         rr = r;
-        xx = h;
-        yy = k;
+        hh = h;
+        kk = k;
     }
     
-    private Random rndm;
+    private Random rndm = new Random();
     
     public double nextRainDrop_x()
     {
-       double pointX = (xx * 2) * rndm.nextDouble() + (xx-rr);
+       double pointX = (hh-rr) + (rr*2*rndm.nextDouble());
        return pointX;
     }
     
     public double nextRainDrop_y()
     {
-        double pointY = (yy * 2) * rndm.nextDouble() + (yy-rr);
+        double pointY = (kk-rr) + (rr*2*rndm.nextDouble());
         return pointY;
     }
     
     public boolean insideCircle(double x, double y)
     {
-        double c = Math.pow((x-xx),2) - Math.pow((y-yy),2);
+        double c = (Math.pow((x-hh),2)) + (Math.pow((y-kk),2));
         double s = Math.pow(rr,2);
         
         if(c<=s)
